@@ -32,9 +32,9 @@ def compile_headers(line):
         if line.startswith(prefix):
             result = "<h" + f"{i}" + ">" + line[i:] + "</h" + f"{i}" + ">"
     if result == "":
-        return line 
+        return line
     
-    return result 
+    return result
    
 
 
@@ -61,7 +61,7 @@ def compile_italic_star(line):
     '*'
     '''
     result = ""
-    i = 0 
+    i = 0
     while i < len(line):
         if line[i:i + 1] == "*" and line.find("*", i + 1) != -1:
             end = line.find("*", i + 1)
@@ -71,7 +71,7 @@ def compile_italic_star(line):
             else:
                 result += line[i]
                 i += 1
-        else: 
+        else:
             result += line[i]
             i += 1
         
@@ -99,8 +99,8 @@ def compile_italic_underscore(line):
     '_'
     '''
         
-    result = "" 
-    i = 0 
+    result = ""
+    i = 0
     while i < len(line):
         if line[i:1 + 1] == "_" and line.find("_", i + 1) != -1:
             end = line.find("_", i + 1)
@@ -112,9 +112,9 @@ def compile_italic_underscore(line):
                 i += 1
         else:
             result += line[i]
-            i += 1 
+            i += 1
     
-    return result 
+    return result
             
 
 
@@ -139,7 +139,7 @@ def compile_strikethrough(line):
     '~~'
     '''
     result = ""
-    i = 0 
+    i = 0
     while i < len(line):
         if line[i:i + 2] == "~~" and line.find("~~", i +2) != -1:
             end = line.find("~~", i + 2)
@@ -148,7 +148,7 @@ def compile_strikethrough(line):
                 i = end + 2
             else:
                 result += line[i]
-                i += 1 
+                i += 1
         
     return result
 
@@ -174,14 +174,14 @@ def compile_bold_stars(line):
     '''
        
     result = ""
-    i = 0 
+    i = 0
     while i < len(line):
         if line[i:i + 2] == "**" and line.find("**", i + 2) != -1:
             end = line.find("**", i + 2)
             if end != -1:
                 result += "<b>" + line[i + 2: end] + "</b>"
                 i = end + 2
-            else: 
+            else:
                 result += line[i]
                 i += 1
 
@@ -206,7 +206,7 @@ def compile_bold_underscore(line):
     '''
      
     result = ""
-    i = 0 
+    i = 0
     while i < len(line):
         if line[i:i + 2] == "__" and line.find("__", i + 2) != -1:
             end = line.find("__", i + 2)
@@ -214,11 +214,11 @@ def compile_bold_underscore(line):
                 result += "<b>" + line[i + 2: end] + "</b>"
             else:
                 result += line[i]
-                i += 1 
+                i += 1
         else:
             result += line[i]
             i += 1
-    return result 
+    return result
 
 def compile_code_inline(line):
     '''
@@ -251,7 +251,7 @@ def compile_code_inline(line):
         return line
     
     result = ""
-    i = 0 
+    i = 0
 
     while i < len(line):
         if line[i] == "`":
@@ -294,7 +294,7 @@ def compile_links(line):
     '''
      
     result = ""
-    i = 0 
+    i = 0
 
     while i < len(line):
         if line[i] == "[":
@@ -302,35 +302,35 @@ def compile_links(line):
 
             if close_b == -1:
                 result += line[i:]
-                break 
+                break
             
             if close_b + 2 < len(line) and line[close_b + 1] == " " and line[close_b + 2] == "(":
                 result += line[i:close_b + 1] + "\n" 
                 i = close_b + 2
-                continue 
+                continue
 
             if close_b + 1 < len(line) and line(close_b + 1) == "(":
                 close_p = line.find(")", close_b + 2)
 
                 if close_p == -1:
                     result += line[i:]
-                    break 
+                    break
 
                 text = line[i + 1:close_b]
                 url = line[close_b + 2:close_p]
 
                 result += f'<a href= "{url}">{text}</a>'
                 i = close_p + 1
-                continue 
+                continue
 
             result += line[i]
             i += 1 
         
-        else: 
+        else:
             result += line[i]
             i += 1 
     
-    return result 
+    return result
 
 
 def compile_images(line):
@@ -350,7 +350,7 @@ def compile_images(line):
     'This is an image of Mike Izbicki: <img src="https://avatars1.githubusercontent.com/u/1052630?v=2&s=460" alt="Mike Izbicki" />'
     '''
     result = ""
-    i = 0 
+    i = 0
 
     while i < len(line):
         if i + 1 < len(line) and line[i] == "!" and line[i + 1] == "[":
@@ -358,14 +358,14 @@ def compile_images(line):
 
             if close_b == -1:
                 result += line[i:]
-                break 
+                break
 
             if close_b + 1 < len(line) and line[close_b + 1] == "(":
                 close_p = line.find(")", close_b + 2)
 
                 if close_p == -1:
                     result += line[i:]
-                    break 
+                    break
 
                 text = line[i + 2:close_b]
                 url = line[close_b + 2:close_p]
@@ -373,10 +373,11 @@ def compile_images(line):
                 result += f'<img src="{url}" alt="{text}" />'
                 i = close_p + 1
             
-            else: 
+            else:
                 result += line[i]
                 i += 1
         else:
             result += line[i]
             i += 1
-    return result 
+    return result
+
