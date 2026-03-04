@@ -2,7 +2,7 @@
 
 ![](https://github.com/mikeizbicki/markdown-compiler/workflows/doctests/badge.svg)&nbsp;
 ![](https://github.com/mikeizbicki/markdown-compiler/workflows/flake8/badge.svg)&nbsp;
-![](https://github.com/mikeizbicki/markdown-compiler/workflows/command_line/badge.svg)&nbsp;
+![](https://github.com/LucyyyyyyT/markdown-compiler/actions/workflows/command_line.yaml/badge.svg)&nbsp;
 
 A simple project for converting markdown files to HTML.
 
