@@ -20,7 +20,7 @@ def compile_italic_star(line):
     '*'
     '''
     result = ""
-    i = 0 
+    i = 0
     while i < len(line):
         if line[i:i + 1] == "*" and line.find("*", i + 1) != -1:
             end = line.find("*", i + 1)
@@ -30,13 +30,9 @@ def compile_italic_star(line):
             else:
                 result += line[i]
                 i += 1
-        else: 
+        else:
             result += line[i]
             i += 1
-        
+
     return result
-
-
-   
-
     
