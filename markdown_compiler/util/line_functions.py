@@ -2,6 +2,7 @@
 Each of the functions in this file takes a single line of input and transforms the line in some way.
 '''
 
+
 def compile_headers(line):
     '''
     Convert markdown headers into <h1>,<h2>,etc tags.
@@ -33,10 +34,8 @@ def compile_headers(line):
             result = "<h" + f"{i}" + ">" + line[i:] + "</h" + f"{i}" + ">"
     if result == "":
         return line
-    
-    return result
-   
 
+    return result
 
 
 def compile_italic_star(line):
@@ -74,10 +73,8 @@ def compile_italic_star(line):
         else:
             result += line[i]
             i += 1
-        
+ 
     return result
-
-
 
 
 def compile_italic_underscore(line):
@@ -98,7 +95,7 @@ def compile_italic_underscore(line):
     >>> compile_italic_underscore('_')
     '_'
     '''
-        
+  
     result = ""
     i = 0
     while i < len(line):
@@ -113,10 +110,9 @@ def compile_italic_underscore(line):
         else:
             result += line[i]
             i += 1
-    
-    return result
-            
 
+    return result
+ 
 
 def compile_strikethrough(line):
     '''
@@ -141,7 +137,7 @@ def compile_strikethrough(line):
     result = ""
     i = 0
     while i < len(line):
-        if line[i:i + 2] == "~~" and line.find("~~", i +2) != -1:
+        if line[i:i + 2] == "~~" and line.find("~~", i + 2) != -1:
             end = line.find("~~", i + 2)
             if end != -1:
                 result += "<ins>" + line[i + 2: end] + "</ins>"
@@ -149,9 +145,8 @@ def compile_strikethrough(line):
             else:
                 result += line[i]
                 i += 1
-        
-    return result
 
+    return result
 
 
 def compile_bold_stars(line):
@@ -172,7 +167,7 @@ def compile_bold_stars(line):
     >>> compile_bold_stars('**')
     '**'
     '''
-       
+
     result = ""
     i = 0
     while i < len(line):
@@ -185,7 +180,7 @@ def compile_bold_stars(line):
                 result += line[i]
                 i += 1
 
-    return result 
+    return result
 
 
 def compile_bold_underscore(line):
@@ -204,7 +199,7 @@ def compile_bold_underscore(line):
     >>> compile_bold_underscore('__')
     '__'
     '''
-     
+    
     result = ""
     i = 0
     while i < len(line):
@@ -219,6 +214,7 @@ def compile_bold_underscore(line):
             result += line[i]
             i += 1
     return result
+
 
 def compile_code_inline(line):
     '''
@@ -249,7 +245,7 @@ def compile_code_inline(line):
     '''
     if line.startwith("```"):
         return line
-    
+
     result = ""
     i = 0
 
@@ -267,13 +263,9 @@ def compile_code_inline(line):
                 i = end + 1
         else:
             result += line[i]
-            i += 1 
-    
-    return result 
+            i += 1
 
-
-
-
+    return result
 
 def compile_links(line):
     '''
@@ -292,7 +284,7 @@ def compile_links(line):
     >>> compile_links('this is wrong: [course webpage](https://github.com/mikeizbicki/cmc-csci040')
     'this is wrong: [course webpage](https://github.com/mikeizbicki/cmc-csci040'
     '''
-     
+
     result = ""
     i = 0
 
@@ -303,9 +295,9 @@ def compile_links(line):
             if close_b == -1:
                 result += line[i:]
                 break
-            
+
             if close_b + 2 < len(line) and line[close_b + 1] == " " and line[close_b + 2] == "(":
-                result += line[i:close_b + 1] + "\n" 
+                result += line[i:close_b + 1] + "\n"
                 i = close_b + 2
                 continue
 
@@ -324,12 +316,12 @@ def compile_links(line):
                 continue
 
             result += line[i]
-            i += 1 
-        
+            i += 1
+     
         else:
             result += line[i]
-            i += 1 
-    
+            i += 1
+
     return result
 
 
@@ -372,7 +364,7 @@ def compile_images(line):
 
                 result += f'<img src="{url}" alt="{text}" />'
                 i = close_p + 1
-            
+
             else:
                 result += line[i]
                 i += 1
@@ -380,4 +372,3 @@ def compile_images(line):
             result += line[i]
             i += 1
     return result
-
