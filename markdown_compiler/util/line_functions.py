@@ -73,7 +73,7 @@ def compile_italic_star(line):
         else:
             result += line[i]
             i += 1
- 
+
     return result
 
 
@@ -95,7 +95,7 @@ def compile_italic_underscore(line):
     >>> compile_italic_underscore('_')
     '_'
     '''
-  
+
     result = ""
     i = 0
     while i < len(line):
@@ -112,7 +112,7 @@ def compile_italic_underscore(line):
             i += 1
 
     return result
- 
+
 
 def compile_strikethrough(line):
     '''
@@ -199,7 +199,7 @@ def compile_bold_underscore(line):
     >>> compile_bold_underscore('__')
     '__'
     '''
-    
+
     result = ""
     i = 0
     while i < len(line):
@@ -267,6 +267,7 @@ def compile_code_inline(line):
 
     return result
 
+
 def compile_links(line):
     '''
     Add <a> tags.
@@ -317,7 +318,7 @@ def compile_links(line):
 
             result += line[i]
             i += 1
-     
+
         else:
             result += line[i]
             i += 1
@@ -371,4 +372,5 @@ def compile_images(line):
         else:
             result += line[i]
             i += 1
+
     return result
